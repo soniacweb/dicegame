@@ -4,6 +4,7 @@ Two player desktop game. Each player takes it in turn to roll the dice. If they 
 
 The aim is to save 100 points the quickest and you win!
 
+Demo can be found <a href="https://soniacweb.github.io/dicegame/">here</a>
 
 ## Technologies :computer:
 - Vanilla JavaScript
