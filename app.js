@@ -12,7 +12,7 @@ GAME RULES:
 
 //create variable to keep track of everything
 
-let scores, roundScore, activePlayer, gamePlaying
+let scores, roundScore, activePlayer, gamePlaying, lastDice
 
 gameInit()
 //Dice- i need to calculate a random number 
@@ -30,6 +30,8 @@ var x = document.querySelector('#score-0').textContent
 //changing css using style method
 document.querySelector('.dice').style.display = 'none'
 
+// const lastDice = Math.floor(Math.random() * 6) + 1
+
 
 
 //Event and event handling 
@@ -44,16 +46,22 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     diceImgs.style.display = 'block'
     //changing the image 
     diceImgs.src = './Images/dice-' + dice + '.png'
-
-    //3. update round score IF the rolled number wasnt a 1 - game logic according to what the user rolls
-    if (dice !== 1) {
-    //add and update score
+    //if you roll a 6 twice
+    if (dice === 6 && lastDice === 6) {
+    //player loses his entire score
+      scores[activePlayer] = 0
+      document.querySelector('#score-' + activePlayer).textContent = '0'
+      nextPlayer()
+    } else if (dice !== 1) { //3. update round score IF the rolled number wasnt a 1 - game logic according to what the user rolls
+      //add and update score
       roundScore += dice
       //display the roundscore
       document.querySelector('#current-' + activePlayer).textContent = roundScore
     } else {
       nextPlayer()
     }
+    lastDice = dice
+
   }
 })
 
@@ -64,11 +72,17 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
   if (gamePlaying) {
     //add current score to global score
     scores[activePlayer] += roundScore
-    //update ui
+    //update score in ui
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer]
   
-    //check if player won the game - make a new screen with box congratulating winning player? and play again button
-    if (scores[activePlayer] >= 100) {
+    //the value property gives me the input the user gives
+    const input = document.querySelector('.final-score').value
+    let winningScore
+    if (input) { //user deciding final score
+      winningScore = input 
+    } else {
+      winningScore = 100
+    } if (scores[activePlayer] >= winningScore) { //check if player won the game - make a new screen with box congratulating winning player? and play again button
       document.querySelector('#name-' + activePlayer).textContent = 'Winner!'
       document.querySelector('.dice').style.display = 'none'
       document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner')
@@ -81,7 +95,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     //next player 
       nextPlayer()
     }
-
+    lastDice = dice
   }
 
 })
