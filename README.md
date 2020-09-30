@@ -21,12 +21,12 @@ The aim is to save 100 points the quickest and you win!
 
 ### Preview 
 
-<img src='https://media.giphy.com/media/fNZzofKCPwoUszCjkB/giphy.gif'/>
+<img src='https://media.giphy.com/media/fNZzofKCPwoUszCjkB/giphy.gif'></img>
 <!-- <img src='https://i.imgur.com/XGFw9nA.png' width='490px'/> -->
 
 
 # Code </img>
 
-Write up to follow!
+Write-up to follow!
 
 
